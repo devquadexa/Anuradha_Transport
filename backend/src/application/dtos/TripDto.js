@@ -1,0 +1,65 @@
+function toTripStopResponseDto(stop) {
+  return {
+    id: stop.id,
+    locationId: stop.locationId,
+    sequenceNo: stop.sequenceNo,
+    locationName: stop.locationName,
+    address: stop.address,
+    contactName: stop.contactName,
+    contactPhone: stop.contactPhone,
+    status: stop.status,
+    notes: stop.notes,
+    mileage: stop.mileage,
+    invoiceNumber: stop.invoiceNumber,
+    driverMileage: stop.driverMileage,
+    odometerReading: stop.odometerReading,
+    expectedMileage: stop.expectedMileage,
+    latitude: stop.latitude,
+    longitude: stop.longitude,
+    gpsLocationName: stop.gpsLocationName,
+    gpsMileage: stop.gpsMileage,
+    invoices: stop.invoices || [],
+    arrivedAt: stop.arrivedAt,
+    deliveredAt: stop.deliveredAt,
+  };
+}
+
+function toTripResponseDto(trip) {
+  if (!trip) return null;
+  return {
+    id: trip.id,
+    tripNumber: trip.tripNumber,
+    customerId: trip.customerId,
+    customer: trip.customer,
+    driverId: trip.driverId,
+    driver: trip.driver,
+    origin: trip.origin,
+    destination: trip.destination,
+    endPoint: trip.endPoint,
+    scheduledDate: trip.scheduledDate,
+    scheduledTime: trip.scheduledTime,
+    status: trip.status,
+    cargoDescription: trip.cargoDescription,
+    remarks: trip.remarks,
+    mileage: trip.mileage,
+    finalOdometerReading: trip.finalOdometerReading,
+    invoiceNumber: trip.invoiceNumber,
+    startLatitude: trip.startLatitude,
+    startLongitude: trip.startLongitude,
+    assignedAt: trip.assignedAt,
+    startedAt: trip.startedAt,
+    completedAt: trip.completedAt,
+    approvalStatus: trip.approvalStatus,
+    approvedBy: trip.approvedBy,
+    approvedAt: trip.approvedAt,
+    rejectionReason: trip.rejectionReason,
+    emergencyStop: trip.emergencyStop,
+    emergencyStopAt: trip.emergencyStopAt,
+    emergencyStopReason: trip.emergencyStopReason,
+    createdAt: trip.createdAt,
+    updatedAt: trip.updatedAt,
+    stops: (trip.stops || []).map(toTripStopResponseDto),
+  };
+}
+
+module.exports = { toTripResponseDto, toTripStopResponseDto };

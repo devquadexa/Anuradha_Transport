@@ -1,0 +1,77 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, corporate, business;
+}
+
+/* Drive Tailwind's dark: variant from the .dark class on <html>,
+   which ThemeModeContext toggles in sync with MUI's mode. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Bind the browser color-scheme to the app theme so native controls
+   (date/time pickers, their icons, scrollbars) always match and stay
+   visible in both light and dark mode. */
+:root {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+/* Native date/time picker indicator: keep it visible in light mode
+   (dark icon) and invert it in dark mode (light icon). */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+  filter: invert(0);
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="time"]::-webkit-calendar-picker-indicator:hover,
+input[type="month"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+html.dark input[type="date"]::-webkit-calendar-picker-indicator,
+html.dark input[type="time"]::-webkit-calendar-picker-indicator,
+html.dark input[type="month"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Google Places Autocomplete dropdown must appear above MUI Dialogs */
+.pac-container {
+  z-index: 1500 !important;
+}
+
+/* Native date/time/month inputs always show a value, so their MUI outlined
+   label must stay shrunk (floated above the field) to avoid overlapping the
+   value. Applies to every such field across the app, both sizes. */
+.MuiFormControl-root:has(input[type="date"]) .MuiInputLabel-outlined,
+.MuiFormControl-root:has(input[type="time"]) .MuiInputLabel-outlined,
+.MuiFormControl-root:has(input[type="month"]) .MuiInputLabel-outlined {
+  transform: translate(14px, -9px) scale(0.75) !important;
+  transform-origin: top left !important;
+  pointer-events: auto;
+}
+
+/* Keep the outline notch open so the floated label doesn't clash with the
+   border line. */
+.MuiFormControl-root:has(input[type="date"]) .MuiOutlinedInput-notchedOutline legend,
+.MuiFormControl-root:has(input[type="time"]) .MuiOutlinedInput-notchedOutline legend,
+.MuiFormControl-root:has(input[type="month"]) .MuiOutlinedInput-notchedOutline legend {
+  max-width: 100% !important;
+}
