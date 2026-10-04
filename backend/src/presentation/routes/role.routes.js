@@ -1,7 +1,7 @@
 const { Router } = require('express');
-const asyncHandler = require('../middleware/asyncHandler');
-const authenticate = require('../middleware/authenticate');
-const { authorizePermissions } = require('../middleware/authorize');
+const asyncHandler = require('../../middleware/asyncHandler');
+const authenticate = require('../../middleware/authenticate');
+const { authorizePermissions } = require('../../middleware/authorize');
 
 /**
  * @param {import('../controllers/role.controller')} roleController

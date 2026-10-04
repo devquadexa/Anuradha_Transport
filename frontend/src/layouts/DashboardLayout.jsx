@@ -35,8 +35,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LocalShippingRoundedIcon from '@mui/icons-material/LocalShippingRounded';
-import { useAuth } from '../contexts/AuthContext';
-import { useThemeMode } from '../contexts/ThemeModeContext';
+import { useAuth } from '../context/AuthContext';
+import { useThemeMode } from '../context/ThemeModeContext';
 import { navConfig } from '../routes/navConfig';
 
 const DRAWER_WIDTH = 264;

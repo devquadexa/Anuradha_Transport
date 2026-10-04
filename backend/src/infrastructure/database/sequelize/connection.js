@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const env = require('../../config/env');
+const env = require('../../../config/env');
 const logger = require('../../logging/WinstonLogger');
 
 /**

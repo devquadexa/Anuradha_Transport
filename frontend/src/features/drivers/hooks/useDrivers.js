@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { driversApi } from '../api/driversApi';
+import { driversApi } from '../../../api/services/driversService';
 
 export function useDriversList(params) {
   return useQuery({

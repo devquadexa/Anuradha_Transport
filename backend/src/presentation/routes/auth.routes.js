@@ -1,7 +1,7 @@
 const { Router } = require('express');
-const asyncHandler = require('../middleware/asyncHandler');
-const validate = require('../middleware/validate');
-const authenticate = require('../middleware/authenticate');
+const asyncHandler = require('../../middleware/asyncHandler');
+const validate = require('../../middleware/validate');
+const authenticate = require('../../middleware/authenticate');
 const { loginSchema, refreshTokenSchema } = require('../../application/validators/auth.validator');
 
 /**

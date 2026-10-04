@@ -12,7 +12,7 @@ import ConfirmDialog from '../../../components/feedback/ConfirmDialog';
 import StatusChip from '../../../components/feedback/StatusChip';
 import DriverFormDialog from '../components/DriverFormDialog';
 import { useDriversList, useCreateDriver, useUpdateDriver, useDeleteDriver } from '../hooks/useDrivers';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
 const DRIVER_STATUS_COLORS = { active: 'success', inactive: 'default', on_leave: 'warning', suspended: 'error' };
 

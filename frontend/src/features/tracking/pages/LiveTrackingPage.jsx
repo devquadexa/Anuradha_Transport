@@ -6,7 +6,7 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 import PageHeader from '../../../components/layout-elements/PageHeader';
-import apiClient from '../../../services/apiClient';
+import apiClient from '../../../api/client';
 import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LIBRARIES, SRI_LANKA_CENTER } from '../../../config/googleMaps';
 
 const mapContainerStyle = { width: '100%', height: 'calc(100vh - 200px)', minHeight: '400px' };

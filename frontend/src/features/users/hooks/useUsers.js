@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { usersApi } from '../api/usersApi';
-import { rolesApi } from '../api/rolesApi';
+import { usersApi } from '../../../api/services/usersService';
+import { rolesApi } from '../../../api/services/rolesService';
 
 export const usersQueryKey = (params) => ['users', params];
 

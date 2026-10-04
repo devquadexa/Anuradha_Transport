@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { tripsApi } from '../api/tripsApi';
+import { tripsApi } from '../../../api/services/tripsService';
 
 export function useTripsList(params) {
   return useQuery({

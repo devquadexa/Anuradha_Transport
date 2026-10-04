@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { tripsApi } from '../../trips/api/tripsApi';
-import { driversApi } from '../../drivers/api/driversApi';
-import { locationsApi } from '../../locations/api/locationsApi';
+import { tripsApi } from '../../../api/services/tripsService';
+import { driversApi } from '../../../api/services/driversService';
+import { locationsApi } from '../../../api/services/locationsService';
 
 // ---- date range helpers (local time, ISO date strings) --------------------
 function iso(d) {

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import apiClient from '../../../services/apiClient';
+import apiClient from '../../../api/client';
 
 /**
  * Live positions of all drivers currently on an in-progress trip.

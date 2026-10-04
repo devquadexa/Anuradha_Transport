@@ -6,12 +6,12 @@ const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 const swaggerUi = require('swagger-ui-express');
 
-const env = require('./infrastructure/config/env');
+const env = require('./config/env');
 const container = require('./container');
 const buildRouter = require('./presentation/routes');
 const swaggerSpec = require('./presentation/docs/swagger');
-const errorHandler = require('./presentation/middleware/errorHandler');
-const notFound = require('./presentation/middleware/notFound');
+const errorHandler = require('./middleware/errorHandler');
+const notFound = require('./middleware/notFound');
 
 const app = express();
 

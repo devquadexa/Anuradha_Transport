@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 import { useTripsList } from '../../trips/hooks/useTrips';
 import { useCustomersList } from '../../customers/hooks/useCustomers';
 import { useDriversList } from '../../drivers/hooks/useDrivers';

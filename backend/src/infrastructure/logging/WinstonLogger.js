@@ -1,7 +1,7 @@
 const winston = require('winston');
 const path = require('path');
 const ILogger = require('../../application/interfaces/ILogger');
-const env = require('../config/env');
+const env = require('../../config/env');
 
 const { combine, timestamp, printf, colorize, json } = winston.format;
 

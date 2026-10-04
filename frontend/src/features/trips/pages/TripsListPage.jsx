@@ -27,7 +27,7 @@ import {
   useSetEmergencyStop,
   useReorderStops,
 } from '../hooks/useTrips';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
 const TRIP_STATUS_COLORS = {
   pending: 'default',

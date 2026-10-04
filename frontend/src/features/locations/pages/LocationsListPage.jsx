@@ -11,7 +11,7 @@ import DataTable from '../../../components/data-table/DataTable';
 import ConfirmDialog from '../../../components/feedback/ConfirmDialog';
 import LocationFormDialog from '../components/LocationFormDialog';
 import { useLocationsList, useCreateLocation, useUpdateLocation, useDeleteLocation } from '../hooks/useLocations';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
 export default function LocationsListPage() {
   const { hasPermission } = useAuth();

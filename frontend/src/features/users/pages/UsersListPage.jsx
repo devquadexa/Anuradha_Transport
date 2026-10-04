@@ -13,7 +13,7 @@ import ConfirmDialog from '../../../components/feedback/ConfirmDialog';
 import StatusChip from '../../../components/feedback/StatusChip';
 import UserFormDialog from '../components/UserFormDialog';
 import { useUsersList, useCreateUser, useUpdateUser, useDeleteUser } from '../hooks/useUsers';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
 export default function UsersListPage() {
   const { hasPermission } = useAuth();

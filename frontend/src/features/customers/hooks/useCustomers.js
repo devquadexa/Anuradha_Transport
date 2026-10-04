@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { customersApi } from '../api/customersApi';
+import { customersApi } from '../../../api/services/customersService';
 
 export function useCustomersList(params) {
   return useQuery({

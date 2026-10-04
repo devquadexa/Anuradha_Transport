@@ -18,7 +18,7 @@ import CustomerFormDialog from '../components/CustomerFormDialog';
 import LocationFormDialog from '../../locations/components/LocationFormDialog';
 import { useCustomersList, useCreateCustomer, useUpdateCustomer, useDeleteCustomer } from '../hooks/useCustomers';
 import { useActiveLocations, useCreateLocation, useUpdateLocation, useDeleteLocation } from '../../locations/hooks/useLocations';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
 export default function CustomersListPage() {
   const { hasPermission } = useAuth();

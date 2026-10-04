@@ -35,7 +35,7 @@ import TripDetailDrawer from '../components/TripDetailDrawer';
 import MenuItem from '@mui/material/MenuItem';
 import { useTripsList, usePendingApprovals, useApproveTrip } from '../hooks/useTrips';
 import { useActiveDrivers } from '../../drivers/hooks/useDrivers';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 import { tripsApi } from '../api/tripsApi';
 import { exportTripReportsToExcel } from '../utils/tripReportExcel';
 

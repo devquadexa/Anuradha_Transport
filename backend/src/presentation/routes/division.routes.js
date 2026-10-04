@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const asyncHandler = require('../middleware/asyncHandler');
-const authenticate = require('../middleware/authenticate');
+const asyncHandler = require('../../middleware/asyncHandler');
+const authenticate = require('../../middleware/authenticate');
 const { Division } = require('../../infrastructure/database/sequelize/models');
 const ApiResponse = require('../../application/common/ApiResponse');
 

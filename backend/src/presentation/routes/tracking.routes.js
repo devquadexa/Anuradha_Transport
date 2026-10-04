@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const asyncHandler = require('../middleware/asyncHandler');
-const authenticate = require('../middleware/authenticate');
-const { authorizePermissions } = require('../middleware/authorize');
+const asyncHandler = require('../../middleware/asyncHandler');
+const authenticate = require('../../middleware/authenticate');
+const { authorizePermissions } = require('../../middleware/authorize');
 const Joi = require('joi');
-const validate = require('../middleware/validate');
+const validate = require('../../middleware/validate');
 
 const pingSchema = Joi.object({
   tripId: Joi.number().integer().positive().required(),

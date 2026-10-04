@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const asyncHandler = require('../middleware/asyncHandler');
-const validate = require('../middleware/validate');
-const authenticate = require('../middleware/authenticate');
-const { authorizePermissions } = require('../middleware/authorize');
+const asyncHandler = require('../../middleware/asyncHandler');
+const validate = require('../../middleware/validate');
+const authenticate = require('../../middleware/authenticate');
+const { authorizePermissions } = require('../../middleware/authorize');
 const {
   createLocationSchema,
   updateLocationSchema,

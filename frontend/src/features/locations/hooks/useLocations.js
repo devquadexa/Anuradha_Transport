@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { locationsApi } from '../api/locationsApi';
+import { locationsApi } from '../../../api/services/locationsService';
 
 export function useLocationsList(params) {
   return useQuery({
