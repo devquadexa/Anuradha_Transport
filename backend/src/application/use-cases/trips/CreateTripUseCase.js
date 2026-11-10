@@ -1,4 +1,5 @@
-const { NotFoundError } = require('../../../domain/errors');
+const { NotFoundError, ForbiddenError } = require('../../../domain/errors');
+const RoleName = require('../../../domain/enums/RoleName');
 const { calculateExpectedMileages } = require('./calculateExpectedMileages');
 
 class CreateTripUseCase {
@@ -10,7 +11,15 @@ class CreateTripUseCase {
     this.logger = logger;
   }
 
-  async execute({ customerId, driverId, stops = [], createdBy, ...data }) {
+  async execute({ customerId, driverId, stops = [], createdBy, ...data }, actor) {
+    // Drivers can only create trips for themselves; override any client-sent driverId.
+    if (actor?.role === RoleName.DRIVER) {
+      const driverProfile = await this.driverRepository.findByUserId(actor.id);
+      if (!driverProfile) {
+        throw new ForbiddenError('No driver profile is linked to your account. Contact an administrator.');
+      }
+      driverId = driverProfile.id;
+    }
     const customer = await this.customerRepository.findById(customerId);
     if (!customer) {
       throw new NotFoundError('Customer not found');

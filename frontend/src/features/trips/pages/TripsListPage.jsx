@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { Box, Button, InputAdornment, TextField, MenuItem, Stack, IconButton, Typography, Chip } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Box, Button, Card, Divider, InputAdornment, TextField, MenuItem, Stack, IconButton, Typography, Chip, Pagination, Skeleton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
+import DriverTripCard from '../components/DriverTripCard';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
@@ -43,6 +46,7 @@ export default function TripsListPage() {
   const { hasPermission, user } = useAuth();
   const isDriver = user?.role === 'DRIVER';
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
@@ -231,53 +235,195 @@ export default function TripsListPage() {
         }
         actions={
           hasPermission('trips:create') && (
-            <Button variant="contained" startIcon={<AddIcon />} onClick={() => { setEditing(null); setFormOpen(true); }}>
+            <Button
+              variant="contained"
+              startIcon={<AddIcon />}
+              onClick={() => {
+                if (isDriver) {
+                  navigate('/trips/new');
+                } else {
+                  setEditing(null);
+                  setFormOpen(true);
+                }
+              }}
+            >
               New Trip
             </Button>
           )
         }
       />
 
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ mb: 2 }}>
-        <TextField
-          placeholder="Search by trip number, origin or destination"
-          size="small"
-          value={search}
-          onChange={(e) => { setPage(1); setSearch(e.target.value); }}
-          sx={{ width: { xs: '100%', sm: 420 } }}
-          InputProps={{ startAdornment: <InputAdornment position="start"><SearchIcon fontSize="small" /></InputAdornment> }}
-        />
-        <TextField
-          select
-          size="small"
-          label="Status"
-          value={status}
-          onChange={(e) => { setPage(1); setStatus(e.target.value); }}
-          sx={{ width: { xs: '100%', sm: 180 } }}
-        >
-          <MenuItem value="">All</MenuItem>
-          {STATUS_OPTIONS.map((s) => (
-            <MenuItem key={s} value={s} sx={{ textTransform: 'capitalize' }}>
-              {s.replace('_', ' ')}
-            </MenuItem>
-          ))}
-        </TextField>
-      </Stack>
+      {/* Search + filter row — driver gets status chip pills, admin gets dropdown */}
+      {isDriver ? (
+        <Box sx={{ mb: 2.5 }}>
+          <TextField
+            fullWidth
+            placeholder="Search by trip number, origin or destination…"
+            size="small"
+            value={search}
+            onChange={(e) => { setPage(1); setSearch(e.target.value); }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><SearchIcon fontSize="small" /></InputAdornment> }}
+            sx={{ mb: 1.5 }}
+          />
+          <Stack direction="row" spacing={0.75} sx={{ flexWrap: 'wrap', gap: 0.75 }}>
+            {[{ value: '', label: 'All' }, ...STATUS_OPTIONS.map((s) => ({ value: s, label: s.replace('_', ' ') }))].map(({ value: v, label }) => (
+              <Chip
+                key={v || 'all'}
+                label={label}
+                size="small"
+                clickable
+                onClick={() => { setPage(1); setStatus(v); }}
+                color={status === v ? 'primary' : 'default'}
+                variant={status === v ? 'filled' : 'outlined'}
+                sx={{ textTransform: 'capitalize', fontWeight: status === v ? 700 : 500, fontSize: '0.75rem' }}
+              />
+            ))}
+          </Stack>
+        </Box>
+      ) : (
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} sx={{ mb: 2 }}>
+          <TextField
+            placeholder="Search by trip number, origin or destination"
+            size="small"
+            value={search}
+            onChange={(e) => { setPage(1); setSearch(e.target.value); }}
+            sx={{ width: { xs: '100%', sm: 420 } }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><SearchIcon fontSize="small" /></InputAdornment> }}
+          />
+          <TextField
+            select
+            size="small"
+            label="Status"
+            value={status}
+            onChange={(e) => { setPage(1); setStatus(e.target.value); }}
+            sx={{ width: { xs: '100%', sm: 180 } }}
+          >
+            <MenuItem value="">All</MenuItem>
+            {STATUS_OPTIONS.map((s) => (
+              <MenuItem key={s} value={s} sx={{ textTransform: 'capitalize' }}>
+                {s.replace('_', ' ')}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Stack>
+      )}
 
-      <DataTable
-        columns={columns}
-        rows={data?.data || []}
-        totalCount={data?.meta?.total || 0}
-        page={page}
-        pageSize={pageSize}
-        sortBy={sortBy}
-        sortOrder={sortOrder}
-        isLoading={isLoading}
-        onPageChange={setPage}
-        onPageSizeChange={(size) => { setPageSize(size); setPage(1); }}
-        onSortChange={handleSortChange}
-        emptyMessage={isDriver ? 'No trips assigned to you yet.' : 'No trips found. Create your first trip to get started.'}
-      />
+      {isDriver ? (
+        <Box>
+          {isLoading ? (
+            <Stack spacing={2}>
+              {[...Array(3)].map((_, i) => (
+                <Card key={i} elevation={0} sx={{ borderRadius: 2.5, border: '1px solid', borderColor: 'divider', pl: '4px', overflow: 'hidden' }}>
+                  <Box sx={{ p: 2.5 }}>
+                    <Stack direction="row" justifyContent="space-between" alignItems="flex-start" sx={{ mb: 1.5 }}>
+                      <Box><Skeleton width={48} height={11} sx={{ mb: 0.5 }} /><Skeleton width={130} height={22} /></Box>
+                      <Skeleton width={82} height={24} sx={{ borderRadius: 3 }} />
+                    </Stack>
+                    <Skeleton height={16} sx={{ mb: 1.5 }} />
+                    <Stack direction="row" spacing={2}><Skeleton width={110} height={12} /><Skeleton width={72} height={12} /></Stack>
+                  </Box>
+                  <Divider />
+                  <Box sx={{ p: 1.5, px: 2.5 }}><Skeleton height={34} sx={{ borderRadius: 1.5 }} /></Box>
+                </Card>
+              ))}
+            </Stack>
+          ) : (data?.data || []).length === 0 ? (
+            <Box
+              sx={{
+                textAlign: 'center',
+                py: { xs: 6, sm: 8 },
+                px: 3,
+                borderRadius: 3,
+                border: '1px dashed',
+                borderColor: 'divider',
+                bgcolor: 'action.hover',
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 64,
+                  height: 64,
+                  borderRadius: '50%',
+                  bgcolor: 'primary.main',
+                  mb: 2,
+                  opacity: 0.12,
+                }}
+              >
+                <LocalShippingOutlinedIcon sx={{ fontSize: 36, color: 'primary.main', opacity: 10 }} />
+              </Box>
+              <Typography variant="h6" fontWeight={700} sx={{ mb: 0.75 }}>
+                {search || status ? 'No trips match your filter' : 'No trips yet'}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5, maxWidth: 280, mx: 'auto' }}>
+                {search || status
+                  ? 'Try adjusting your search or clearing the status filter.'
+                  : 'Your assigned trips will appear here. You can also create a new trip to get started.'}
+              </Typography>
+              {!search && !status && hasPermission('trips:create') && (
+                <Button
+                  variant="contained"
+                  startIcon={<AddIcon />}
+                  size="large"
+                  onClick={() => navigate('/trips/new')}
+                  sx={{ borderRadius: 2, px: 3 }}
+                >
+                  Create New Trip
+                </Button>
+              )}
+              {(search || status) && (
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={() => { setSearch(''); setStatus(''); setPage(1); }}
+                  sx={{ borderRadius: 2 }}
+                >
+                  Clear Filters
+                </Button>
+              )}
+            </Box>
+          ) : (
+            <Stack spacing={2}>
+              {(data?.data || []).map((trip) => (
+                <DriverTripCard
+                  key={trip.id}
+                  trip={trip}
+                  onView={() => setViewingTrip(trip)}
+                  onViewInvoice={(t) => setInvoiceTrip(t)}
+                />
+              ))}
+            </Stack>
+          )}
+          {(data?.meta?.total || 0) > pageSize && (
+            <Stack alignItems="center" sx={{ mt: 3 }}>
+              <Pagination
+                count={Math.ceil((data?.meta?.total || 0) / pageSize)}
+                page={page}
+                onChange={(_, p) => setPage(p)}
+                color="primary"
+                size="small"
+              />
+            </Stack>
+          )}
+        </Box>
+      ) : (
+        <DataTable
+          columns={columns}
+          rows={data?.data || []}
+          totalCount={data?.meta?.total || 0}
+          page={page}
+          pageSize={pageSize}
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          isLoading={isLoading}
+          onPageChange={setPage}
+          onPageSizeChange={(size) => { setPageSize(size); setPage(1); }}
+          onSortChange={handleSortChange}
+          emptyMessage="No trips found. Create your first trip to get started."
+        />
+      )}
 
       {!isDriver && (
         <TripFormDialog

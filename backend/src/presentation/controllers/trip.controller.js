@@ -32,7 +32,7 @@ class TripController {
   }
 
   create = async (req, res) => {
-    const trip = await this.createTripUseCase.execute({ ...req.body, createdBy: req.user.id });
+    const trip = await this.createTripUseCase.execute({ ...req.body, createdBy: req.user.id }, req.user);
     return ApiResponse.success(res, {
       message: 'Trip created successfully',
       data: toTripResponseDto(trip),

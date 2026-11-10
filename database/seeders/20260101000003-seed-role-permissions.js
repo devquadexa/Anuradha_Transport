@@ -52,12 +52,12 @@ module.exports = {
       'users:update',
     ]);
 
-    // DRIVER: read-only access to trips assigned to them. Own-profile
-    // access goes through GET /auth/me (no permission required beyond
-    // being authenticated), so no `users:read` permission is granted here -
-    // that would otherwise allow listing all users. Scoping trips to
-    // "assigned to me only" is enforced in the application layer.
-    assign(driver.id, ['trips:read']);
+    // DRIVER: can read trips (own only, scoped in application layer) and
+    // create their own trips (backend auto-assigns the creating driver).
+    // Own-profile access goes through GET /auth/me (no permission required
+    // beyond being authenticated), so no `users:read` permission is granted
+    // here - that would otherwise allow listing all users.
+    assign(driver.id, ['trips:read', 'trips:create']);
 
     await queryInterface.bulkInsert('role_permissions', rows);
   },
