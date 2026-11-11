@@ -307,7 +307,7 @@ export default function TripDetailDrawer({
       }}
       sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
     >
-      <Box sx={{ overflowY: 'auto', height: '100%', bgcolor: (t) => (t.palette.mode === 'dark' ? 'background.default' : 'grey.50') }}>
+      <Box sx={{ overflowY: 'auto', overflowX: 'hidden', height: '100%', width: '100%', minWidth: 0, bgcolor: (t) => (t.palette.mode === 'dark' ? 'background.default' : 'grey.50') }}>
         {/* Gradient header band */}
         <Box
           sx={{
@@ -330,10 +330,10 @@ export default function TripDetailDrawer({
           <Typography variant="overline" sx={{ opacity: 0.75, letterSpacing: 1.2 }}>
             Trip Details
           </Typography>
-          <Typography variant="h5" fontWeight={800} sx={{ mb: 1.25, pr: 4 }}>
+          <Typography variant="h5" sx={{ fontWeight: 800, mb: 1.25, pr: 4 }}>
             {trip.tripNumber}
           </Typography>
-          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+          <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
             <Chip
               size="small"
               sx={{ textTransform: 'capitalize', bgcolor: 'rgba(255,255,255,0.16)', color: 'common.white', fontWeight: 700 }}
@@ -355,44 +355,44 @@ export default function TripDetailDrawer({
             {/* Route visual card */}
             <Paper elevation={0} sx={{ p: 2, borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
               <Stack direction="row" spacing={1.5}>
-                <Stack alignItems="center" sx={{ pt: 0.5 }}>
+                <Stack sx={{ alignItems: 'center', pt: 0.5 }}>
                   <Box sx={{ width: 12, height: 12, borderRadius: '50%', border: '2px solid', borderColor: 'primary.main' }} />
                   <Box sx={{ flexGrow: 1, width: 2, minHeight: 24, my: 0.5, bgcolor: 'divider' }} />
                   <LocationOnIcon sx={{ fontSize: 18, color: 'primary.main' }} />
                 </Stack>
                 <Stack spacing={1.5} sx={{ flexGrow: 1, minWidth: 0 }}>
-                  <Box>
-                    <Typography variant="caption" color="text.secondary">Origin</Typography>
-                    <Typography variant="body1" fontWeight={700} noWrap>{trip.origin}</Typography>
+                  <Box sx={{ minWidth: 0 }}>
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>Origin</Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 700, wordBreak: "break-word", overflowWrap: "anywhere" }}>{trip.origin}</Typography>
                   </Box>
-                  <Box>
-                    <Typography variant="caption" color="text.secondary">Destination</Typography>
-                    <Typography variant="body1" fontWeight={700} noWrap>{trip.destination}</Typography>
+                  <Box sx={{ minWidth: 0 }}>
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>Destination</Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 700, wordBreak: "break-word", overflowWrap: "anywhere" }}>{trip.destination}</Typography>
                   </Box>
                   {trip.endPoint && (
-                    <Box>
-                      <Typography variant="caption" color="text.secondary">End Point</Typography>
-                      <Typography variant="body1" fontWeight={700} noWrap>{trip.endPoint}</Typography>
+                    <Box sx={{ minWidth: 0 }}>
+                      <Typography variant="caption" sx={{ color: 'text.secondary' }}>End Point</Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 700, wordBreak: "break-word", overflowWrap: "anywhere" }}>{trip.endPoint}</Typography>
                     </Box>
                   )}
                 </Stack>
               </Stack>
               <Divider sx={{ my: 1.5 }} />
-              <Stack direction="row" spacing={0.75} alignItems="center">
+              <Stack direction="row" spacing={0.75} sx={{ alignItems: 'center' }}>
                 <EventIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   {trip.scheduledDate} {trip.scheduledTime ? `at ${trip.scheduledTime.slice(0, 5)}` : ''}
                 </Typography>
               </Stack>
               {trip.finalOdometerReading != null && (
                 <>
                   <Divider sx={{ my: 1.5 }} />
-                  <Stack direction="row" spacing={0.75} alignItems="center">
+                  <Stack direction="row" spacing={0.75} sx={{ alignItems: 'center' }}>
                     <SpeedIcon sx={{ fontSize: 16, color: 'success.main' }} />
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                       Final Vehicle Meter Reading:
                     </Typography>
-                    <Typography variant="body2" fontWeight={700}>{trip.finalOdometerReading} km</Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 700 }}>{trip.finalOdometerReading} km</Typography>
                   </Stack>
                 </>
               )}
@@ -414,12 +414,12 @@ export default function TripDetailDrawer({
 
             {/* Delivery Stops */}
           <Box>
-            <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 1.5 }} flexWrap="wrap" useFlexGap gap={1}>
-              <Typography variant="subtitle2" fontWeight={700}>
+            <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 1, mb: 1.5 }} useFlexGap>
+              <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                 Delivery Locations
               </Typography>
               {onReorderStops && pendingStopCount >= 2 && (
-                <Stack direction="row" spacing={0.5} alignItems="center">
+                <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
                   {reordering && <CircularProgress size={14} sx={{ mr: 0.5 }} />}
                   <Button
                     size="small"
@@ -474,12 +474,10 @@ export default function TripDetailDrawer({
                     >
                       <Stack
                         direction="row"
-                        alignItems="center"
-                        justifyContent="space-between"
-                        sx={{ cursor: isLockedFuture ? 'default' : 'pointer' }}
+                        sx={{ alignItems: 'center', justifyContent: 'space-between', cursor: isLockedFuture ? 'default' : 'pointer' }}
                         onClick={() => !isLockedFuture && setExpandedStop(isExpanded ? null : stop.id)}
                       >
-                        <Stack direction="row" spacing={1} alignItems="center">
+                        <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
                           <Box
                             sx={{
                               width: 26,
@@ -497,20 +495,20 @@ export default function TripDetailDrawer({
                             {isDelivered ? <CheckCircleIcon sx={{ fontSize: 16 }} /> : stop.sequenceNo}
                           </Box>
                           <Box>
-                            <Typography variant="body2" fontWeight={600}>{stop.locationName}</Typography>
+                            <Typography variant="body2" sx={{ fontWeight: 600 }}>{stop.locationName}</Typography>
                             {stop.contactName && (
-                              <Typography variant="caption" color="text.secondary">
+                              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                                 {stop.contactName} {stop.contactPhone ? `• ${stop.contactPhone}` : ''}
                               </Typography>
                             )}
                             {!isDriver && stop.expectedMileage != null && (
-                              <Typography variant="caption" color="info.main" fontWeight={600}>
+                              <Typography variant="caption" sx={{ color: 'info.main', fontWeight: 600 }}>
                                 Expected: {stop.expectedMileage} km
                               </Typography>
                             )}
                           </Box>
                         </Stack>
-                        <Stack direction="row" spacing={0.5} alignItems="center">
+                        <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
                           <Chip
                             size="small"
                             label={isLockedFuture ? 'waiting' : stop.status}
@@ -525,8 +523,8 @@ export default function TripDetailDrawer({
                         <Stack spacing={1.5} sx={{ mt: 2 }}>
                           {/* Expected mileage from saved locations */}
                           {!isDriver && stop.expectedMileage != null && (
-                            <Stack direction="row" spacing={1} alignItems="center" sx={{ px: 0.5 }}>
-                              <Typography variant="caption" color="text.secondary">Map Distance:</Typography>
+                            <Stack direction="row" spacing={1} sx={{ alignItems: 'center', px: 0.5 }}>
+                              <Typography variant="caption" sx={{ color: 'text.secondary' }}>Map Distance:</Typography>
                               <Chip size="small" label={`${stop.expectedMileage} km`} color="info" variant="outlined" sx={{ height: 20, fontSize: 11 }} />
                             </Stack>
                           )}
@@ -545,16 +543,16 @@ export default function TripDetailDrawer({
                             >
                               <Stack spacing={0.5}>
                                 {!isDriver && stop.gpsMileage != null && (
-                                  <Stack direction="row" spacing={1} alignItems="center">
-                                    <Typography variant="caption" color="text.secondary" sx={{ minWidth: 100 }}>GPS Distance:</Typography>
-                                    <Typography variant="body2" fontWeight={700}>{stop.gpsMileage} km</Typography>
+                                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+                                    <Typography variant="caption" sx={{ color: 'text.secondary', minWidth: 100 }}>GPS Distance:</Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 700 }}>{stop.gpsMileage} km</Typography>
                                     <Chip size="small" label="GPS verified" color="success" sx={{ height: 18, fontSize: 9 }} />
                                   </Stack>
                                 )}
                                 {stop.driverMileage != null && (
-                                  <Stack direction="row" spacing={1} alignItems="center">
-                                    <Typography variant="caption" color="text.secondary" sx={{ minWidth: 100 }}>Driver Mileage:</Typography>
-                                    <Typography variant="body2" fontWeight={700}>{stop.driverMileage} km</Typography>
+                                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+                                    <Typography variant="caption" sx={{ color: 'text.secondary', minWidth: 100 }}>Driver Mileage:</Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 700 }}>{stop.driverMileage} km</Typography>
                                   </Stack>
                                 )}
                                 {!isDriver && stop.gpsMileage != null && stop.driverMileage != null && (() => {
@@ -564,9 +562,9 @@ export default function TripDetailDrawer({
                                   const isOver = diff > 0;
                                   const diffColor = absDiff < 0.01 ? 'success.main' : pct > 10 ? 'error.main' : 'warning.main';
                                   return (
-                                    <Stack direction="row" spacing={1} alignItems="center">
-                                      <Typography variant="caption" color="text.secondary" sx={{ minWidth: 100 }}>Difference:</Typography>
-                                      <Typography variant="body2" fontWeight={700} sx={{ color: diffColor }}>
+                                    <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+                                      <Typography variant="caption" sx={{ color: 'text.secondary', minWidth: 100 }}>Difference:</Typography>
+                                      <Typography variant="body2" sx={{ fontWeight: 700, color: diffColor }}>
                                         {absDiff < 0.01 ? 'No difference' : `${isOver ? '+' : '−'}${absDiff.toFixed(2)} km (${pct.toFixed(1)}%)`}
                                       </Typography>
                                       {absDiff >= 0.01 && (
@@ -582,20 +580,20 @@ export default function TripDetailDrawer({
                                   );
                                 })()}
                                 {stop.odometerReading != null && (
-                                  <Stack direction="row" spacing={1} alignItems="center">
-                                    <Typography variant="caption" color="text.secondary" sx={{ minWidth: 100 }}>Vehicle Meter:</Typography>
-                                    <Typography variant="body2" fontWeight={700}>{stop.odometerReading} km</Typography>
+                                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+                                    <Typography variant="caption" sx={{ color: 'text.secondary', minWidth: 100 }}>Vehicle Meter:</Typography>
+                                    <Typography variant="body2" sx={{ fontWeight: 700 }}>{stop.odometerReading} km</Typography>
                                   </Stack>
                                 )}
                                 {!isDriver && stop.gpsLocationName && (
-                                  <Stack direction="row" spacing={1} alignItems="center">
-                                    <Typography variant="caption" color="text.secondary" sx={{ minWidth: 100 }}>Location:</Typography>
+                                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+                                    <Typography variant="caption" sx={{ color: 'text.secondary', minWidth: 100 }}>Location:</Typography>
                                     <Typography variant="body2">{stop.gpsLocationName}</Typography>
                                   </Stack>
                                 )}
                                 {stop.invoices?.length > 0 && (
-                                  <Stack direction="row" spacing={1} alignItems="flex-start">
-                                    <Typography variant="caption" color="text.secondary" sx={{ minWidth: 100 }}>Invoices:</Typography>
+                                  <Stack direction="row" spacing={1} sx={{ alignItems: 'flex-start' }}>
+                                    <Typography variant="caption" sx={{ color: 'text.secondary', minWidth: 100 }}>Invoices:</Typography>
                                     <Stack spacing={0.25}>
                                       {stop.invoices.map((inv, i) => (
                                         <Typography key={i} variant="body2">{inv}</Typography>
@@ -634,12 +632,12 @@ export default function TripDetailDrawer({
                               />
 
                               <Box>
-                                <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5, display: 'block' }}>
+                                <Typography variant="caption" sx={{ color: 'text.secondary', mb: 0.5, display: 'block' }}>
                                   Invoice Numbers
                                 </Typography>
                                 <Stack spacing={1}>
                                   {(edit.invoices || ['']).map((inv, i) => (
-                                    <Stack key={i} direction="row" spacing={0.5} alignItems="center">
+                                    <Stack key={i} direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
                                       <TextField
                                         size="small"
                                         fullWidth
@@ -660,7 +658,7 @@ export default function TripDetailDrawer({
                                 </Stack>
                               </Box>
 
-                              <Typography variant="caption" color="text.secondary">
+                              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                                 📍 GPS mileage will be auto-calculated when you mark this as delivered.
                               </Typography>
 
@@ -703,7 +701,7 @@ export default function TripDetailDrawer({
             ) : (
               <Paper elevation={0} sx={{ p: 2, textAlign: 'center', borderRadius: 2, border: '1px dashed', borderColor: 'divider' }}>
                 <LocationOnIcon color="action" />
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                <Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5 }}>
                   No intermediate stops — direct delivery from origin to destination.
                 </Typography>
               </Paper>
@@ -714,7 +712,7 @@ export default function TripDetailDrawer({
             <>
               <Divider />
               <Box>
-                <Typography variant="caption" color="text.secondary">Remarks</Typography>
+                <Typography variant="caption" sx={{ color: 'text.secondary' }}>Remarks</Typography>
                 <Typography variant="body2">{trip.remarks}</Typography>
               </Box>
             </>
@@ -737,13 +735,13 @@ export default function TripDetailDrawer({
                       : 'background.paper',
                 }}
               >
-                <Stack direction="row" alignItems="center" spacing={1.5}>
+                <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
                   <ReportProblemIcon color={trip.emergencyStop ? 'error' : 'warning'} />
                   <Box sx={{ flexGrow: 1 }}>
-                    <Typography variant="body2" fontWeight={700}>
+                    <Typography variant="body2" sx={{ fontWeight: 700 }}>
                       {trip.emergencyStop ? 'Emergency Stop Active' : 'Emergency Stop'}
                     </Typography>
-                    <Typography variant="caption" color="text.secondary">
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                       {trip.emergencyStop
                         ? 'Admin has been notified you are stopped.'
                         : 'Turn on if you need to stop during the trip.'}
@@ -870,13 +868,13 @@ function InfoTile({ icon, label, value, fullWidth = false }) {
         minWidth: 0,
       }}
     >
-      <Stack direction="row" spacing={0.75} alignItems="center" sx={{ color: 'text.secondary', mb: 0.5 }}>
+      <Stack direction="row" spacing={0.75} sx={{ alignItems: 'center', color: 'text.secondary', mb: 0.5 }}>
         {icon}
         <Typography variant="caption" sx={{ fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.4 }}>
           {label}
         </Typography>
       </Stack>
-      <Typography variant="body2" fontWeight={700} sx={{ wordBreak: 'break-word' }}>
+      <Typography variant="body2" sx={{ fontWeight: 700, wordBreak: 'break-word' }}>
         {value}
       </Typography>
     </Paper>

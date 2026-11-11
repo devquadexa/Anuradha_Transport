@@ -96,13 +96,12 @@ export default function GpsOverridePanel() {
       {/* Header */}
       <Stack
         direction="row"
-        alignItems="center"
         spacing={1}
-        sx={{ px: 1.5, py: 1, bgcolor: position ? 'success.main' : 'warning.main', color: 'white', cursor: 'pointer' }}
+        sx={{ alignItems: 'center', px: 1.5, py: 1, bgcolor: position ? 'success.main' : 'warning.main', color: 'white', cursor: 'pointer' }}
         onClick={() => setExpanded(!expanded)}
       >
         <GpsFixedIcon fontSize="small" />
-        <Typography variant="caption" fontWeight={700} sx={{ flexGrow: 1 }}>
+        <Typography variant="caption" sx={{ fontWeight: 700, flexGrow: 1 }}>
           {position ? `GPS: ${position.latitude.toFixed(4)}, ${position.longitude.toFixed(4)}` : 'DEV GPS — Click to set'}
         </Typography>
         {expanded ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
@@ -132,7 +131,7 @@ export default function GpsOverridePanel() {
           />
 
           {/* Presets */}
-          <Stack direction="row" flexWrap="wrap" gap={0.5} sx={{ mb: 1 }}>
+          <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 0.5, mb: 1 }}>
             {PRESETS.map((p) => (
               <Chip
                 key={p.label}

@@ -29,7 +29,7 @@ export default function PageHeader({ title, description, breadcrumbs = [], actio
                 {bc.label}
               </MuiLink>
             ) : (
-              <Typography key={bc.label} color="text.primary" sx={{ fontSize: 13, fontWeight: 600 }}>
+              <Typography key={bc.label} sx={{ color: 'text.primary', fontSize: 13, fontWeight: 600 }}>
                 {bc.label}
               </Typography>
             )
@@ -41,9 +41,9 @@ export default function PageHeader({ title, description, breadcrumbs = [], actio
         sx={{
           position: 'relative',
           overflow: 'hidden',
-          borderRadius: 4,
-          px: { xs: 2.5, sm: 3.5 },
-          py: { xs: 2.5, sm: 3 },
+          borderRadius: { xs: 3, sm: 4 },
+          px: { xs: 2, sm: 3.5 },
+          py: { xs: 2, sm: 3 },
           color: 'common.white',
           background: 'linear-gradient(135deg, #0EA5E9 0%, #2563EB 55%, #1E3A8A 100%)',
           boxShadow: '0 14px 30px -14px rgba(37,99,235,0.55)',
@@ -55,17 +55,15 @@ export default function PageHeader({ title, description, breadcrumbs = [], actio
 
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
-          justifyContent="space-between"
-          alignItems={{ sm: 'center' }}
           spacing={2}
-          sx={{ position: 'relative', zIndex: 1 }}
+          sx={{ justifyContent: 'space-between', alignItems: { xs: 'stretch', sm: 'center' }, position: 'relative', zIndex: 1, width: '100%' }}
         >
-          <Stack direction="row" spacing={2} alignItems="center" sx={{ minWidth: 0 }}>
+          <Stack direction="row" spacing={2} sx={{ alignItems: 'center', minWidth: 0, flex: 1 }}>
             {icon && (
               <Box
                 sx={{
-                  width: 52,
-                  height: 52,
+                  width: { xs: 40, sm: 52 },
+                  height: { xs: 40, sm: 52 },
                   flexShrink: 0,
                   borderRadius: 3,
                   display: 'flex',
@@ -79,11 +77,11 @@ export default function PageHeader({ title, description, breadcrumbs = [], actio
               </Box>
             )}
             <Box sx={{ minWidth: 0 }}>
-              <Typography variant="h5" fontWeight={800} sx={{ letterSpacing: -0.3 }}>
+              <Typography variant="h5" sx={{ fontWeight: 800, letterSpacing: -0.3, fontSize: { xs: '1.15rem', sm: '1.5rem' } }}>
                 {title}
               </Typography>
               {description && (
-                <Typography variant="body2" sx={{ mt: 0.5, color: 'rgba(255,255,255,0.82)' }}>
+                <Typography variant="body2" sx={{ mt: 0.5, color: 'rgba(255,255,255,0.82)', fontSize: { xs: '0.8rem', sm: '0.875rem' } }}>
                   {description}
                 </Typography>
               )}
@@ -93,6 +91,7 @@ export default function PageHeader({ title, description, breadcrumbs = [], actio
             <Box
               sx={{
                 flexShrink: 0,
+                '& .MuiButton-root': { width: { xs: '100%', sm: 'auto' } },
                 // Make action buttons legible on the blue banner: solid white
                 // buttons with blue text; outlined buttons become white-outlined.
                 '& .MuiButton-contained': {

@@ -9,8 +9,8 @@ import CloseIcon from '@mui/icons-material/Close';
 export default function FormDialogHeader({ title, onClose }) {
   return (
     <Box sx={{ px: 3, pt: 2.5, pb: 2 }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Typography variant="h6" fontWeight={700}>
+      <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography variant="h6" sx={{ fontWeight: 700 }}>
           {title}
         </Typography>
         <IconButton onClick={onClose} size="small">

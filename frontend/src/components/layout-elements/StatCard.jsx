@@ -12,25 +12,25 @@ export default function StatCard({ label, value, icon, color = 'primary', trend 
   return (
     <Card variant="outlined">
       <CardContent>
-        <Stack direction="row" alignItems="flex-start" justifyContent="space-between">
+        <Stack direction="row" sx={{ alignItems: 'flex-start', justifyContent: 'space-between' }}>
           <Box>
-            <Typography variant="body2" color="text.secondary" fontWeight={600}>
+            <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 600 }}>
               {label}
             </Typography>
             <Typography variant="h4" sx={{ mt: 0.5 }}>
               {loading ? '—' : value}
             </Typography>
             {trend != null && (
-              <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5 }}>
+              <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center', mt: 0.5 }}>
                 {isPositive ? (
                   <TrendingUpIcon fontSize="small" color="success" />
                 ) : (
                   <TrendingDownIcon fontSize="small" color="error" />
                 )}
-                <Typography variant="caption" color={isPositive ? 'success.main' : 'error.main'} fontWeight={700}>
+                <Typography variant="caption" sx={{ color: isPositive ? 'success.main' : 'error.main', fontWeight: 700 }}>
                   {Math.abs(trend)}%
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                   vs last month
                 </Typography>
               </Stack>

@@ -44,7 +44,7 @@ export default function ConfirmDialog({
           >
             <WarningAmberIcon />
           </Box>
-          <Typography variant="h6" fontWeight={700}>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>
             {title}
           </Typography>
         </Box>
@@ -56,7 +56,7 @@ export default function ConfirmDialog({
       <Divider />
 
       <DialogContent sx={{ px: 3, py: 3 }}>
-        <Typography variant="body1" color="text.secondary">
+        <Typography variant="body1" sx={{ color: 'text.secondary' }}>
           {message}
         </Typography>
       </DialogContent>

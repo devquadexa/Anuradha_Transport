@@ -106,7 +106,7 @@ export default function DashboardLayout() {
           <LocalShippingRoundedIcon fontSize="small" />
         </Box>
         <Box sx={{ minWidth: 0, flexGrow: 1 }}>
-          <Typography variant="subtitle2" fontWeight={800} sx={{ lineHeight: 1.15 }} noWrap>
+          <Typography variant="subtitle2" sx={{ fontWeight: 800, lineHeight: 1.15 }} noWrap>
             Anuradha Transport
           </Typography>
           <Typography
@@ -181,8 +181,8 @@ export default function DashboardLayout() {
             {user?.firstName?.[0] || <PersonIcon fontSize="small" />}
           </Avatar>
           <Box sx={{ overflow: 'hidden', flexGrow: 1 }}>
-            <Typography variant="body2" fontWeight={700} noWrap>{user?.fullName}</Typography>
-            <Typography variant="caption" color="text.secondary" noWrap>
+            <Typography variant="body2" noWrap sx={{ fontWeight: 700 }}>{user?.fullName}</Typography>
+            <Typography variant="caption" noWrap sx={{ color: 'text.secondary' }}>
               {ROLE_LABEL[user?.role] || user?.role}
             </Typography>
           </Box>
@@ -210,7 +210,7 @@ export default function DashboardLayout() {
           color: 'text.primary',
         }}
       >
-        <Toolbar sx={{ gap: 1 }}>
+        <Toolbar sx={{ gap: 1, px: { xs: 1.5, sm: 3 } }}>
           {!isDesktop && (
             <IconButton edge="start" onClick={() => setMobileOpen(true)}>
               <MenuIcon />
@@ -219,7 +219,7 @@ export default function DashboardLayout() {
           {!isDesktop && (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
               <LocalShippingRoundedIcon sx={{ color: 'primary.main', fontSize: 20 }} />
-              <Typography variant="subtitle2" fontWeight={800} sx={{ color: 'text.primary' }} noWrap>
+              <Typography variant="subtitle2" sx={{ fontWeight: 800, color: 'text.primary' }} noWrap>
                 Anuradha
               </Typography>
             </Box>
@@ -255,7 +255,7 @@ export default function DashboardLayout() {
             </Avatar>
             {isDesktop && (
               <Box sx={{ textAlign: 'left', lineHeight: 1.2, maxWidth: 160, minWidth: 0 }}>
-                <Typography variant="body2" fontWeight={700} noWrap sx={{ color: 'text.primary' }}>
+                <Typography variant="body2" noWrap sx={{ fontWeight: 700, color: 'text.primary' }}>
                   {user?.fullName}
                 </Typography>
                 <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary' }} noWrap>
@@ -283,10 +283,10 @@ export default function DashboardLayout() {
                 {user?.firstName?.[0] || <PersonIcon fontSize="small" />}
               </Avatar>
               <Box sx={{ minWidth: 0 }}>
-                <Typography variant="body2" fontWeight={700} noWrap>
+                <Typography variant="body2" noWrap sx={{ fontWeight: 700 }}>
                   {user?.fullName}
                 </Typography>
-                <Typography variant="caption" color="text.secondary" noWrap sx={{ display: 'block' }}>
+                <Typography variant="caption" noWrap sx={{ color: 'text.secondary', display: 'block' }}>
                   {user?.email}
                 </Typography>
               </Box>
@@ -323,7 +323,7 @@ export default function DashboardLayout() {
         {drawerContent}
       </Drawer>
 
-      <Box component="main" sx={{ flexGrow: 1, p: { xs: 1.5, md: 3 }, width: { xs: '100%', md: `calc(100% - ${DRAWER_WIDTH}px)` }, minWidth: 0 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: { xs: 1.5, md: 3 }, pb: { xs: 'calc(16px + env(safe-area-inset-bottom))', md: 3 }, width: { xs: '100%', md: `calc(100% - ${DRAWER_WIDTH}px)` }, minWidth: 0 }}>
         <Toolbar />
         <Outlet />
       </Box>

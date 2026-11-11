@@ -92,10 +92,10 @@ export default function TripInvoiceDialog({ open, trip, onClose }) {
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 3, pt: 3, pb: 1 }}>
         <Box>
-          <Typography variant="h6" fontWeight={700}>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>
             Invoice — {trip.tripNumber}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {trip.origin} → {trip.destination}
           </Typography>
         </Box>
@@ -114,11 +114,11 @@ export default function TripInvoiceDialog({ open, trip, onClose }) {
       <DialogContent sx={{ px: 3, py: 3 }}>
         <Box ref={invoiceRef}>
           <Box sx={{ borderBottom: '2px solid', borderColor: 'primary.main', pb: 2, mb: 2 }}>
-            <Stack direction="row" justifyContent="space-between" alignItems="center">
-              <Typography variant="h5" fontWeight={700} color="primary">
+            <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+              <Typography variant="h5" color="primary" sx={{ fontWeight: 700 }}>
                 INVOICE
               </Typography>
-              <Typography variant="body2" color="text.secondary" fontWeight={600}>
+              <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 600 }}>
                 {trip.tripNumber}
               </Typography>
             </Stack>

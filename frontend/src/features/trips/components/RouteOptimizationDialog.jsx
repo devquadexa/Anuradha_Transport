@@ -145,13 +145,13 @@ export default function RouteOptimizationDialog({ open, trip, onClose, onStartTr
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <Box sx={{ px: 3, pt: 3, pb: 1 }}>
-        <Stack direction="row" spacing={1.5} alignItems="center">
+        <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
           <Box sx={{ width: 36, height: 36, borderRadius: 2, bgcolor: 'primary.main', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <NavigationIcon sx={{ color: 'white', fontSize: 20 }} />
           </Box>
           <Box>
-            <Typography variant="h6" fontWeight={700}>Suggested Route</Typography>
-            <Typography variant="caption" color="text.secondary">Best route calculated for minimum distance</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 700 }}>Suggested Route</Typography>
+            <Typography variant="caption" sx={{ color: 'text.secondary' }}>Best route calculated for minimum distance</Typography>
           </Box>
         </Stack>
       </Box>
@@ -160,7 +160,7 @@ export default function RouteOptimizationDialog({ open, trip, onClose, onStartTr
         {loading && (
           <Box sx={{ py: 6, textAlign: 'center' }}>
             <CircularProgress size={32} />
-            <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>Finding the best route...</Typography>
+            <Typography variant="body2" sx={{ color: 'text.secondary', mt: 2 }}>Finding the best route...</Typography>
           </Box>
         )}
 
@@ -185,7 +185,7 @@ export default function RouteOptimizationDialog({ open, trip, onClose, onStartTr
             </Box>
 
             {/* Route options */}
-            <Typography variant="subtitle2" fontWeight={700}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
               {routes.length > 1 ? `${routes.length} routes available:` : 'Best route:'}
             </Typography>
 
@@ -205,16 +205,16 @@ export default function RouteOptimizationDialog({ open, trip, onClose, onStartTr
                     '&:hover': { borderColor: 'primary.light' },
                   }}
                 >
-                  <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
+                  <Stack direction="row" spacing={2} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
                     <Box sx={{ flex: 1, minWidth: 0 }}>
-                      <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap">
-                        <Typography variant="body2" fontWeight={600} noWrap>
+                      <Stack direction="row" spacing={1} sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
+                        <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>
                           via {route.summary}
                         </Typography>
                         {i === 0 && <Chip label="Shortest" size="small" color="success" sx={{ height: 20, fontSize: 10 }} />}
                       </Stack>
                       {/* Time & Traffic */}
-                      <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: 0.75 }}>
+                      <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mt: 0.75 }}>
                         <Chip
                           size="small"
                           label={route.durationInTraffic}
@@ -240,7 +240,7 @@ export default function RouteOptimizationDialog({ open, trip, onClose, onStartTr
                         )}
                       </Stack>
                       {route.warnings.length > 0 && (
-                        <Typography variant="caption" color="warning.main" sx={{ mt: 0.5, display: 'block' }}>
+                        <Typography variant="caption" sx={{ color: 'warning.main', mt: 0.5, display: 'block' }}>
                           ⚠️ {route.warnings[0]}
                         </Typography>
                       )}

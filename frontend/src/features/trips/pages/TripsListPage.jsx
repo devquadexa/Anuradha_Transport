@@ -80,7 +80,7 @@ export default function TripsListPage() {
       headerName: 'Trip #',
       sortable: true,
       render: (row) => (
-        <Typography variant="body2" fontWeight={700}>
+        <Typography variant="body2" sx={{ fontWeight: 700 }}>
           {row.tripNumber}
         </Typography>
       ),
@@ -259,23 +259,25 @@ export default function TripsListPage() {
           <TextField
             fullWidth
             placeholder="Search by trip number, origin or destination…"
-            size="small"
+            size="medium"
             value={search}
             onChange={(e) => { setPage(1); setSearch(e.target.value); }}
-            InputProps={{ startAdornment: <InputAdornment position="start"><SearchIcon fontSize="small" /></InputAdornment> }}
+            InputProps={{
+              startAdornment: <InputAdornment position="start"><SearchIcon fontSize="small" /></InputAdornment>,
+              sx: { borderRadius: 3 },
+            }}
             sx={{ mb: 1.5 }}
           />
-          <Stack direction="row" spacing={0.75} sx={{ flexWrap: 'wrap', gap: 0.75 }}>
+          <Stack direction="row" spacing={0.75} sx={{ flexWrap: 'nowrap', gap: 0.75, overflowX: 'auto', pb: 0.5 }}>
             {[{ value: '', label: 'All' }, ...STATUS_OPTIONS.map((s) => ({ value: s, label: s.replace('_', ' ') }))].map(({ value: v, label }) => (
               <Chip
                 key={v || 'all'}
                 label={label}
-                size="small"
                 clickable
                 onClick={() => { setPage(1); setStatus(v); }}
                 color={status === v ? 'primary' : 'default'}
                 variant={status === v ? 'filled' : 'outlined'}
-                sx={{ textTransform: 'capitalize', fontWeight: status === v ? 700 : 500, fontSize: '0.75rem' }}
+                sx={{ textTransform: 'capitalize', fontWeight: status === v ? 700 : 500, fontSize: '0.8rem', height: 32, px: 0.5, flexShrink: 0 }}
               />
             ))}
           </Stack>
@@ -315,7 +317,7 @@ export default function TripsListPage() {
               {[...Array(3)].map((_, i) => (
                 <Card key={i} elevation={0} sx={{ borderRadius: 2.5, border: '1px solid', borderColor: 'divider', pl: '4px', overflow: 'hidden' }}>
                   <Box sx={{ p: 2.5 }}>
-                    <Stack direction="row" justifyContent="space-between" alignItems="flex-start" sx={{ mb: 1.5 }}>
+                    <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'flex-start', mb: 1.5 }}>
                       <Box><Skeleton width={48} height={11} sx={{ mb: 0.5 }} /><Skeleton width={130} height={22} /></Box>
                       <Skeleton width={82} height={24} sx={{ borderRadius: 3 }} />
                     </Stack>
@@ -354,10 +356,10 @@ export default function TripsListPage() {
               >
                 <LocalShippingOutlinedIcon sx={{ fontSize: 36, color: 'primary.main', opacity: 10 }} />
               </Box>
-              <Typography variant="h6" fontWeight={700} sx={{ mb: 0.75 }}>
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 0.75 }}>
                 {search || status ? 'No trips match your filter' : 'No trips yet'}
               </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5, maxWidth: 280, mx: 'auto' }}>
+              <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2.5, maxWidth: 280, mx: 'auto' }}>
                 {search || status
                   ? 'Try adjusting your search or clearing the status filter.'
                   : 'Your assigned trips will appear here. You can also create a new trip to get started.'}
@@ -385,7 +387,13 @@ export default function TripsListPage() {
               )}
             </Box>
           ) : (
-            <Stack spacing={2}>
+            <Box
+              sx={{
+                display: 'grid',
+                gap: 2,
+                gridTemplateColumns: { xs: '1fr', md: 'repeat(2, minmax(0, 1fr))', xl: 'repeat(3, minmax(0, 1fr))' },
+              }}
+            >
               {(data?.data || []).map((trip) => (
                 <DriverTripCard
                   key={trip.id}
@@ -394,10 +402,10 @@ export default function TripsListPage() {
                   onViewInvoice={(t) => setInvoiceTrip(t)}
                 />
               ))}
-            </Stack>
+            </Box>
           )}
           {(data?.meta?.total || 0) > pageSize && (
-            <Stack alignItems="center" sx={{ mt: 3 }}>
+            <Stack sx={{ alignItems: 'center', mt: 3 }}>
               <Pagination
                 count={Math.ceil((data?.meta?.total || 0) / pageSize)}
                 page={page}

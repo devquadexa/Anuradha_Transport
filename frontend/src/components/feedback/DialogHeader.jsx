@@ -41,11 +41,11 @@ export default function DialogHeader({ title, subtitle, icon = null, onClose }) 
           </Box>
         )}
         <Box sx={{ minWidth: 0 }}>
-          <Typography variant="h6" fontWeight={700} noWrap>
+          <Typography variant="h6" noWrap sx={{ fontWeight: 700 }}>
             {title}
           </Typography>
           {subtitle && (
-            <Typography variant="body2" color="text.secondary" noWrap>
+            <Typography variant="body2" noWrap sx={{ color: 'text.secondary' }}>
               {subtitle}
             </Typography>
           )}

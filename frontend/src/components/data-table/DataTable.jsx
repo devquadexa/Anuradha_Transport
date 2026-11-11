@@ -51,7 +51,7 @@ export default function DataTable({
   const renderCards = () => {
     if (!isLoading && rows.length === 0) {
       return (
-        <Typography color="text.secondary" align="center" sx={{ py: 4 }}>
+        <Typography align="center" sx={{ color: 'text.secondary', py: 4 }}>
           {emptyMessage}
         </Typography>
       );
@@ -70,13 +70,11 @@ export default function DataTable({
                     key={col.field}
                     direction="row"
                     spacing={1.5}
-                    justifyContent="space-between"
-                    alignItems="flex-start"
+                    sx={{ justifyContent: 'space-between', alignItems: 'flex-start' }}
                   >
                     <Typography
                       variant="caption"
-                      color="text.secondary"
-                      sx={{ fontWeight: 600, textTransform: 'uppercase', flexShrink: 0, pt: 0.25 }}
+                      sx={{ color: 'text.secondary', fontWeight: 600, textTransform: 'uppercase', flexShrink: 0, pt: 0.25 }}
                     >
                       {col.headerName}
                     </Typography>
@@ -184,7 +182,7 @@ export default function DataTable({
                 {!isLoading && rows.length === 0 && (
                   <TableRow>
                     <TableCell colSpan={columns.length} align="center">
-                      <Typography color="text.secondary" sx={{ py: 4 }}>
+                      <Typography sx={{ color: 'text.secondary', py: 4 }}>
                         {emptyMessage}
                       </Typography>
                     </TableCell>

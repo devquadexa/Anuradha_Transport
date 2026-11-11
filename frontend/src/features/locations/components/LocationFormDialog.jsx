@@ -96,7 +96,7 @@ export default function LocationFormDialog({ open, location = null, customer = n
       <DialogContent sx={{ px: 3, py: 3, maxHeight: 'calc(100vh - 180px)', overflowY: 'auto' }}>
         {/* Map */}
         <Paper elevation={0} sx={{ p: 2, mb: 3, bgcolor: 'action.hover', borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
-          <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 1.5, textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
+          <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5, textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
             📍 Pick Location on Map
           </Typography>
           <Suspense fallback={<Box sx={{ height: 350, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><CircularProgress /></Box>}>

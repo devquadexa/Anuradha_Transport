@@ -40,11 +40,11 @@ export default function LocationsListPage() {
       headerName: 'Location',
       sortable: true,
       render: (row) => (
-        <Stack direction="row" spacing={1} alignItems="center">
+        <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
           <LocationOnIcon fontSize="small" color="primary" />
           <Box>
-            <Typography variant="body2" fontWeight={600}>{row.name}</Typography>
-            {row.address && <Typography variant="caption" color="text.secondary">{row.address}</Typography>}
+            <Typography variant="body2" sx={{ fontWeight: 600 }}>{row.name}</Typography>
+            {row.address && <Typography variant="caption" sx={{ color: 'text.secondary' }}>{row.address}</Typography>}
           </Box>
         </Stack>
       ),

@@ -9,7 +9,7 @@ import PageHeader from '../../../components/layout-elements/PageHeader';
 import apiClient from '../../../api/client';
 import { GOOGLE_MAPS_API_KEY, GOOGLE_MAPS_LIBRARIES, SRI_LANKA_CENTER } from '../../../config/googleMaps';
 
-const mapContainerStyle = { width: '100%', height: 'calc(100vh - 200px)', minHeight: '400px' };
+const mapContainerStyle = { width: '100%', height: 'calc(100dvh - 260px)', minHeight: '320px' };
 
 export default function LiveTrackingPage() {
   const { isLoaded } = useJsApiLoader({
@@ -46,7 +46,7 @@ export default function LiveTrackingPage() {
         title="Live Tracking"
         description="Real-time location of all active drivers on the road."
         actions={
-          <Stack direction="row" spacing={1} alignItems="center">
+          <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
             <Chip
               label={`${positions.length} active`}
               color="success"
@@ -54,7 +54,7 @@ export default function LiveTrackingPage() {
               icon={<LocalShippingIcon />}
             />
             {lastRefresh && (
-              <Typography variant="caption" color="text.secondary">
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                 Updated {lastRefresh.toLocaleTimeString()}
               </Typography>
             )}
@@ -99,12 +99,12 @@ export default function LiveTrackingPage() {
                 {/* Google InfoWindow always renders on a white background, so
                     force dark text here regardless of the app's dark mode. */}
                 <Box sx={{ p: 0.5, minWidth: 180, color: '#1f2937' }}>
-                  <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
+                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mb: 1 }}>
                     <Avatar sx={{ width: 28, height: 28, fontSize: 11, bgcolor: '#1976d2', color: '#fff' }}>
                       {selectedDriver.driver.name.split(' ').map((n) => n[0]).join('')}
                     </Avatar>
                     <Box>
-                      <Typography variant="body2" fontWeight={700} sx={{ color: '#111827' }}>{selectedDriver.driver.name}</Typography>
+                      <Typography variant="body2" sx={{ fontWeight: 700, color: '#111827' }}>{selectedDriver.driver.name}</Typography>
                       <Typography variant="caption" sx={{ color: '#6b7280' }}>{selectedDriver.driver.phone}</Typography>
                     </Box>
                   </Stack>
@@ -121,9 +121,9 @@ export default function LiveTrackingPage() {
                       </Typography>
                     )}
                     {selectedDriver.position.speed != null && (
-                      <Stack direction="row" spacing={0.5} alignItems="center">
+                      <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
                         <SpeedIcon sx={{ fontSize: 14, color: '#374151' }} />
-                        <Typography variant="caption" fontWeight={600} sx={{ color: 'inherit' }}>
+                        <Typography variant="caption" sx={{ fontWeight: 600, color: 'inherit' }}>
                           {selectedDriver.position.speed} km/h
                         </Typography>
                       </Stack>
@@ -148,23 +148,23 @@ export default function LiveTrackingPage() {
         <Stack spacing={1} sx={{ mt: 2 }}>
           {positions.map((pos) => (
             <Paper key={pos.tripId} elevation={0} sx={{ p: 1.5, border: '1px solid', borderColor: 'divider', borderRadius: 1.5 }}>
-              <Stack direction="row" justifyContent="space-between" alignItems="center">
-                <Stack direction="row" spacing={1.5} alignItems="center">
+              <Stack direction="row" spacing={1} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+                <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', minWidth: 0 }}>
                   <Avatar sx={{ width: 32, height: 32, fontSize: 12, bgcolor: 'primary.main' }}>
                     {pos.driver.name.split(' ').map((n) => n[0]).join('')}
                   </Avatar>
-                  <Box>
-                    <Typography variant="body2" fontWeight={600}>{pos.driver.name}</Typography>
-                    <Typography variant="caption" color="text.secondary">
+                  <Box sx={{ minWidth: 0 }}>
+                    <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>{pos.driver.name}</Typography>
+                    <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {pos.tripNumber} • {pos.origin} → {pos.destination}
                     </Typography>
                   </Box>
                 </Stack>
-                <Stack alignItems="flex-end">
+                <Stack sx={{ alignItems: 'flex-end', flexShrink: 0 }}>
                   {pos.position.speed != null && (
                     <Chip size="small" icon={<SpeedIcon />} label={`${pos.position.speed} km/h`} sx={{ height: 22, fontSize: 11 }} />
                   )}
-                  <Typography variant="caption" color="text.secondary">
+                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                     {new Date(pos.position.recordedAt).toLocaleTimeString()}
                   </Typography>
                 </Stack>
@@ -177,7 +177,7 @@ export default function LiveTrackingPage() {
       {positions.length === 0 && (
         <Paper elevation={0} sx={{ mt: 2, p: 4, textAlign: 'center', border: '1px dashed', borderColor: 'divider', borderRadius: 2 }}>
           <LocalShippingIcon sx={{ fontSize: 40, color: 'text.disabled', mb: 1 }} />
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             No active trips right now. Drivers will appear here once they start a trip.
           </Typography>
         </Paper>

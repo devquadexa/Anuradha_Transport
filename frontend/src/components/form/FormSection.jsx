@@ -8,7 +8,7 @@ import { Box, Typography, Divider } from '@mui/material';
 export default function FormSection({ title, children, sx }) {
   return (
     <Box sx={{ mb: 3, ...sx }}>
-      <Typography variant="subtitle2" color="primary.main" sx={{ mb: 1 }}>
+      <Typography variant="subtitle2" sx={{ color: 'primary.main', mb: 1 }}>
         {title}
       </Typography>
       <Divider sx={{ mb: 2.5, borderColor: 'primary.main', opacity: 0.4 }} />

@@ -141,7 +141,7 @@ export function AddressMap({ position = null, height = 260 }) {
   if (!isLoaded) {
     return (
       <Box sx={{ ...boxSx, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Typography variant="body2" color="text.secondary">Loading map…</Typography>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>Loading map…</Typography>
       </Box>
     );
   }

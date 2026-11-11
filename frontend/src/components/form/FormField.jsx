@@ -16,7 +16,7 @@ const FormField = forwardRef(function FormField(
   return (
     <Box sx={sx}>
       {label && (
-        <Typography variant="body2" fontWeight={600} sx={{ mb: 0.75 }}>
+        <Typography variant="body2" sx={{ fontWeight: 600, mb: 0.75 }}>
           {label}
           {required && (
             <Typography component="span" sx={{ color: 'error.main', ml: 0.5 }}>

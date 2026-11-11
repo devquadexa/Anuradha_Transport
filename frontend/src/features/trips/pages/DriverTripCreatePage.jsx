@@ -69,7 +69,7 @@ const DEFAULTS = {
 
 function SectionHeader({ icon: Icon, title, subtitle }) {
   return (
-    <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 2 }}>
+    <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', mb: 2 }}>
       <Box
         sx={{
           display: 'flex',
@@ -88,13 +88,12 @@ function SectionHeader({ icon: Icon, title, subtitle }) {
       <Box>
         <Typography
           variant="subtitle2"
-          fontWeight={700}
-          sx={{ textTransform: 'uppercase', fontSize: '0.7rem', letterSpacing: 0.5 }}
+          sx={{ fontWeight: 700, textTransform: 'uppercase', fontSize: '0.7rem', letterSpacing: 0.5 }}
         >
           {title}
         </Typography>
         {subtitle && (
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
             {subtitle}
           </Typography>
         )}
@@ -268,11 +267,11 @@ export default function DriverTripCreatePage() {
   const locationOption = (props, opt) => (
     <li {...props} key={opt.id}>
       <Box>
-        <Typography variant="body2" fontWeight={600}>
+        <Typography variant="body2" sx={{ fontWeight: 600 }}>
           {opt.name}
         </Typography>
         {opt.customer && (
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
             {opt.customer.companyName}
           </Typography>
         )}
@@ -283,15 +282,15 @@ export default function DriverTripCreatePage() {
   return (
     <Box sx={{ maxWidth: 600, mx: 'auto' }}>
       {/* Header */}
-      <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 3 }}>
+      <Stack direction="row" spacing={1} sx={{ alignItems: 'center', mb: 3 }}>
         <IconButton onClick={() => navigate('/trips')} size="small" sx={{ color: 'text.secondary' }}>
           <ArrowBackIcon />
         </IconButton>
         <Box>
-          <Typography variant="h6" fontWeight={700}>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>
             Create New Trip
           </Typography>
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
             Plan your delivery route
           </Typography>
         </Box>
@@ -304,7 +303,7 @@ export default function DriverTripCreatePage() {
           icon={<BusinessIcon fontSize="inherit" />}
           sx={{ mb: 2, borderRadius: 2 }}
         >
-          <Typography variant="caption" fontWeight={600}>
+          <Typography variant="caption" sx={{ fontWeight: 600 }}>
             Customer: {derivedCustomer.companyName}
           </Typography>
         </Alert>
@@ -460,7 +459,7 @@ export default function DriverTripCreatePage() {
           borderColor: 'divider',
         }}
       >
-        <Stack direction="row" justifyContent="space-between" alignItems="flex-start" sx={{ mb: 2 }}>
+        <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
           <SectionHeader
             icon={LocationOnIcon}
             title="Delivery Stops"
@@ -486,7 +485,7 @@ export default function DriverTripCreatePage() {
           {fields.map((item, index) => (
             <Box key={item.id}>
               {distances[index] != null && (
-                <Stack direction="row" justifyContent="center" sx={{ py: 0.75 }}>
+                <Stack direction="row" sx={{ justifyContent: 'center', py: 0.75 }}>
                   <Chip
                     icon={<StraightenIcon />}
                     label={`${distances[index]} km`}
@@ -509,11 +508,9 @@ export default function DriverTripCreatePage() {
               >
                 <Stack
                   direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  sx={{ mb: 1.25 }}
+                  sx={{ justifyContent: 'space-between', alignItems: 'center', mb: 1.25 }}
                 >
-                  <Typography variant="caption" fontWeight={700} color="text.secondary">
+                  <Typography variant="caption" sx={{ fontWeight: 700, color: 'text.secondary' }}>
                     {index === fields.length - 1
                       ? `Stop ${index + 1} — Final Destination`
                       : `Stop ${index + 1}`}
@@ -574,7 +571,7 @@ export default function DriverTripCreatePage() {
               opacity: 0.85,
             }}
           >
-            <Typography variant="body2" fontWeight={700} color="info.contrastText">
+            <Typography variant="body2" sx={{ fontWeight: 700, color: 'info.contrastText' }}>
               Total Route Distance: {totalDistance} km
             </Typography>
           </Box>

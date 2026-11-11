@@ -27,10 +27,10 @@ export default function AssignDriverDialog({ open, trip, submitting = false, onS
       {/* Header */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 3, pt: 3, pb: 1 }}>
         <Box>
-          <Typography variant="h6" fontWeight={700}>
+          <Typography variant="h6" sx={{ fontWeight: 700 }}>
             Assign Driver
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             Trip {trip?.tripNumber}: {trip?.origin} → {trip?.destination}
           </Typography>
         </Box>

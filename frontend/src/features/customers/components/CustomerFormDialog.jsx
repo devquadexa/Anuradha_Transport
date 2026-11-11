@@ -116,10 +116,10 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
         <Icon sx={{ fontSize: 18 }} />
       </Box>
       <Box>
-        <Typography variant="subtitle2" fontWeight={700} sx={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
           {title}
         </Typography>
-        {subtitle && <Typography variant="caption" color="text.secondary">{subtitle}</Typography>}
+        {subtitle && <Typography variant="caption" sx={{ color: 'text.secondary' }}>{subtitle}</Typography>}
       </Box>
     </Box>
   );
@@ -138,7 +138,7 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
         <Paper elevation={0} sx={{ p: 2.5, mb: 3, bgcolor: 'action.hover', borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
           <SectionHeader icon={BusinessIcon} title="Company Details" />
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={12}>
+            <Grid size={{ xs: 12, sm: 12 }}>
               <Controller
                 name="companyName"
                 control={control}
@@ -155,7 +155,7 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="phone"
                 control={control}
@@ -172,7 +172,7 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="email"
                 control={control}
@@ -189,7 +189,7 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="status"
                 control={control}
@@ -201,7 +201,7 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="divisionId"
                 control={control}
@@ -239,10 +239,10 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
                 <PersonIcon sx={{ fontSize: 18 }} />
               </Box>
               <Box>
-                <Typography variant="subtitle2" fontWeight={700} sx={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700, textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
                   Contact Persons
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                   Maximum 3 contacts
                 </Typography>
               </Box>
@@ -257,8 +257,8 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
           <Stack spacing={2}>
             {fields.map((item, index) => (
               <Box key={item.id} sx={{ p: 2, borderRadius: 1.5, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
-                <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 1.5 }}>
-                  <Typography variant="caption" fontWeight={700} color="text.secondary">
+                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
+                  <Typography variant="caption" sx={{ fontWeight: 700, color: 'text.secondary' }}>
                     Contact #{index + 1}
                   </Typography>
                   <IconButton size="small" onClick={() => remove(index)} color="error">
@@ -266,7 +266,7 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
                   </IconButton>
                 </Stack>
                 <Grid container spacing={1.5}>
-                  <Grid item xs={12}>
+                  <Grid size={{ xs: 12 }}>
                     <Controller
                       name={`contactPersons.${index}.name`}
                       control={control}
@@ -282,14 +282,14 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
                       )}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid size={{ xs: 12, sm: 6 }}>
                     <Controller
                       name={`contactPersons.${index}.phone`}
                       control={control}
                       render={({ field }) => <TextField {...field} label="Phone" fullWidth size="small" />}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid size={{ xs: 12, sm: 6 }}>
                     <Controller
                       name={`contactPersons.${index}.email`}
                       control={control}
@@ -301,7 +301,7 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
             ))}
             {fields.length === 0 && (
               <Box sx={{ py: 3, textAlign: 'center', borderRadius: 1.5, border: '1px dashed', borderColor: 'divider' }}>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                   No contact persons added yet.
                 </Typography>
               </Box>
@@ -336,10 +336,10 @@ export default function CustomerFormDialog({ open, customer = null, submitting =
               )}
             />
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <Controller name="city" control={control} render={({ field }) => <TextField {...field} label="City" fullWidth size="small" />} />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <Controller
                   name="country"
                   control={control}

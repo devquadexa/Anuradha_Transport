@@ -97,9 +97,9 @@ function ExpiryRow({ icon, label, date, days }) {
   }
 
   return (
-    <Stack direction="row" spacing={1} alignItems="center">
+    <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
       {icon}
-      <Typography variant="caption" color="text.secondary" sx={{ minWidth: 66 }}>
+      <Typography variant="caption" sx={{ color: 'text.secondary', minWidth: 66 }}>
         {label}:
       </Typography>
       <Typography variant="caption" sx={{ color: 'text.secondary' }}>
@@ -305,10 +305,10 @@ export default function TripFormDialog({ open, trip = null, submitting = false, 
         <Icon sx={{ fontSize: 18 }} />
       </Box>
       <Box>
-        <Typography variant="subtitle2" fontWeight={700} sx={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
           {title}
         </Typography>
-        {subtitle && <Typography variant="caption" color="text.secondary">{subtitle}</Typography>}
+        {subtitle && <Typography variant="caption" sx={{ color: 'text.secondary' }}>{subtitle}</Typography>}
       </Box>
     </Box>
   );
@@ -357,19 +357,19 @@ export default function TripFormDialog({ open, trip = null, submitting = false, 
             {selectedDriver && (
               <Paper elevation={0} sx={{ p: 1.75, borderRadius: 1.5, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
                 <Stack spacing={0.75}>
-                  <Stack direction="row" spacing={1} alignItems="center">
+                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
                     <PersonIcon sx={{ fontSize: 16, color: 'primary.main' }} />
-                    <Typography variant="body2" fontWeight={700}>{selectedDriver.fullName}</Typography>
+                    <Typography variant="body2" sx={{ fontWeight: 700 }}>{selectedDriver.fullName}</Typography>
                   </Stack>
-                  <Stack direction="row" spacing={1} alignItems="center">
+                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
                     <DirectionsCarIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
-                    <Typography variant="caption" color="text.secondary">
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                       Vehicle: {selectedDriver.vehicleNumber || '—'}
                     </Typography>
                   </Stack>
-                  <Stack direction="row" spacing={1} alignItems="center">
+                  <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
                     <PhoneIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
-                    <Typography variant="caption" color="text.secondary">
+                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                       {selectedDriver.phone || '—'}
                       {selectedDriver.licenseNumber ? ` • Licence: ${selectedDriver.licenseNumber}` : ''}
                     </Typography>
@@ -410,8 +410,8 @@ export default function TripFormDialog({ open, trip = null, submitting = false, 
                   renderOption={(props, opt) => (
                     <li {...props} key={opt.id}>
                       <Box>
-                        <Typography variant="body2" fontWeight={600}>{opt.name}</Typography>
-                        {opt.customer && <Typography variant="caption" color="text.secondary">{opt.customer.companyName}</Typography>}
+                        <Typography variant="body2" sx={{ fontWeight: 600 }}>{opt.name}</Typography>
+                        {opt.customer && <Typography variant="caption" sx={{ color: 'text.secondary' }}>{opt.customer.companyName}</Typography>}
                       </Box>
                     </li>
                   )}
@@ -444,8 +444,8 @@ export default function TripFormDialog({ open, trip = null, submitting = false, 
                   renderOption={(props, opt) => (
                     <li {...props} key={opt.id}>
                       <Box>
-                        <Typography variant="body2" fontWeight={600}>{opt.name}</Typography>
-                        {opt.customer && <Typography variant="caption" color="text.secondary">{opt.customer.companyName}</Typography>}
+                        <Typography variant="body2" sx={{ fontWeight: 600 }}>{opt.name}</Typography>
+                        {opt.customer && <Typography variant="caption" sx={{ color: 'text.secondary' }}>{opt.customer.companyName}</Typography>}
                       </Box>
                     </li>
                   )}
@@ -537,10 +537,10 @@ export default function TripFormDialog({ open, trip = null, submitting = false, 
                 <RouteIcon sx={{ fontSize: 18 }} />
               </Box>
               <Box>
-                <Typography variant="subtitle2" fontWeight={700} sx={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 700, textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
                   Route Locations
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                   Add locations from any customer. Last one is the final destination. Shortest path is auto-calculated.
                 </Typography>
               </Box>
@@ -561,7 +561,7 @@ export default function TripFormDialog({ open, trip = null, submitting = false, 
               <Box key={item.id}>
                 {/* Distance from previous location */}
                 {distances[index] != null && (
-                  <Stack direction="row" alignItems="center" justifyContent="center" sx={{ py: 0.5 }}>
+                  <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'center', py: 0.5 }}>
                     <Chip
                       icon={<StraightenIcon />}
                       label={`${distances[index]} km`}
@@ -573,8 +573,8 @@ export default function TripFormDialog({ open, trip = null, submitting = false, 
                   </Stack>
                 )}
                 <Box sx={{ p: 2, borderRadius: 1.5, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
-                  <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 1.5 }}>
-                    <Typography variant="caption" fontWeight={700} color="text.secondary">
+                  <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
+                    <Typography variant="caption" sx={{ fontWeight: 700, color: 'text.secondary' }}>
                       {index === fields.length - 1 ? `Location #${index + 1} (Final Destination)` : `Location #${index + 1}`}
                     </Typography>
                     {fields.length > 1 && (
@@ -597,8 +597,8 @@ export default function TripFormDialog({ open, trip = null, submitting = false, 
                         renderOption={(props, opt) => (
                           <li {...props} key={opt.id}>
                             <Box>
-                              <Typography variant="body2" fontWeight={600}>{opt.name}</Typography>
-                              {opt.customer && <Typography variant="caption" color="text.secondary">{opt.customer.companyName}</Typography>}
+                              <Typography variant="body2" sx={{ fontWeight: 600 }}>{opt.name}</Typography>
+                              {opt.customer && <Typography variant="caption" sx={{ color: 'text.secondary' }}>{opt.customer.companyName}</Typography>}
                             </Box>
                           </li>
                         )}
@@ -623,7 +623,7 @@ export default function TripFormDialog({ open, trip = null, submitting = false, 
           {/* Total distance */}
           {totalDistance != null && (
             <Paper elevation={0} sx={{ mt: 2, p: 1.5, borderRadius: 1.5, bgcolor: 'info.50', border: '1px solid', borderColor: 'info.light', textAlign: 'center' }}>
-              <Typography variant="body2" fontWeight={700} color="info.main">
+              <Typography variant="body2" sx={{ fontWeight: 700, color: 'info.main' }}>
                 Total Route Distance: {totalDistance} km
               </Typography>
             </Paper>

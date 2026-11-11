@@ -155,10 +155,10 @@ export default function DriverFormDialog({ open, driver = null, submitting = fal
         <Icon sx={{ fontSize: 18 }} />
       </Box>
       <Box>
-        <Typography variant="subtitle2" fontWeight={700} sx={{ textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: 0.5 }}>
           {title}
         </Typography>
-        {subtitle && <Typography variant="caption" color="text.secondary">{subtitle}</Typography>}
+        {subtitle && <Typography variant="caption" sx={{ color: 'text.secondary' }}>{subtitle}</Typography>}
       </Box>
     </Box>
   );
@@ -203,7 +203,7 @@ export default function DriverFormDialog({ open, driver = null, submitting = fal
         <Paper elevation={0} sx={{ p: 2.5, mb: 3, bgcolor: 'action.hover', borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
           <SectionHeader icon={PersonIcon} title="Identification & Contact" />
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="nicNumber"
                 control={control}
@@ -220,7 +220,7 @@ export default function DriverFormDialog({ open, driver = null, submitting = fal
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="phone"
                 control={control}
@@ -237,7 +237,7 @@ export default function DriverFormDialog({ open, driver = null, submitting = fal
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="status"
                 control={control}
@@ -258,7 +258,7 @@ export default function DriverFormDialog({ open, driver = null, submitting = fal
         <Paper elevation={0} sx={{ p: 2.5, mb: 3, bgcolor: 'action.hover', borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
           <SectionHeader icon={DirectionsCarIcon} title="License & Vehicle" />
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="licenseNumber"
                 control={control}
@@ -274,7 +274,7 @@ export default function DriverFormDialog({ open, driver = null, submitting = fal
                 )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="licenseExpiry"
                 control={control}
@@ -293,28 +293,28 @@ export default function DriverFormDialog({ open, driver = null, submitting = fal
               />
               <ExpiryHint days={licenseDays} label="License" />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
               <Controller
                 name="vehicleNumber"
                 control={control}
                 render={({ field }) => <TextField {...field} label="Vehicle Number" fullWidth size="small" placeholder="e.g., ABC-1234" />}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="insuranceProvider"
                 control={control}
                 render={({ field }) => <TextField {...field} label="Insurance Provider" fullWidth size="small" placeholder="e.g., Ceylinco" />}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="insurancePolicyNumber"
                 control={control}
                 render={({ field }) => <TextField {...field} label="Insurance Policy No." fullWidth size="small" placeholder="Policy number" />}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="insuranceExpiry"
                 control={control}
@@ -338,14 +338,14 @@ export default function DriverFormDialog({ open, driver = null, submitting = fal
         <Paper elevation={0} sx={{ p: 2.5, bgcolor: 'action.hover', borderRadius: 2, border: '1px solid', borderColor: 'divider' }}>
           <SectionHeader icon={LocationOnIcon} title="Address & Notes" />
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
               <Controller
                 name="address"
                 control={control}
                 render={({ field }) => <TextField {...field} label="Address" fullWidth size="small" placeholder="Home address" />}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
               <Controller
                 name="notes"
                 control={control}

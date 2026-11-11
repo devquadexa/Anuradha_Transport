@@ -25,7 +25,7 @@ function daysUntil(dateStr) {
 function ExpiryCell({ date, label }) {
   const days = daysUntil(date);
   if (days == null) {
-    return <Typography variant="body2" color="text.secondary">—</Typography>;
+    return <Typography variant="body2" sx={{ color: 'text.secondary' }}>—</Typography>;
   }
 
   let color = 'success';
@@ -42,7 +42,7 @@ function ExpiryCell({ date, label }) {
   }
 
   return (
-    <Stack direction="row" spacing={0.75} alignItems="center">
+    <Stack direction="row" spacing={0.75} sx={{ alignItems: 'center' }}>
       <Typography variant="body2">{date}</Typography>
       <Tooltip title={tip}>
         <Chip
@@ -85,16 +85,16 @@ export default function DriversListPage() {
       headerName: 'Driver',
       sortable: false,
       render: (row) => (
-        <Stack direction="row" spacing={1.5} alignItems="center">
+        <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
           <Avatar sx={{ width: 34, height: 34, fontSize: 13, fontWeight: 700 }}>
             {row.firstName?.[0]}
             {row.lastName?.[0]}
           </Avatar>
           <Box>
-            <Typography variant="body2" fontWeight={600}>
+            <Typography variant="body2" sx={{ fontWeight: 600 }}>
               {row.fullName}
             </Typography>
-            <Typography variant="caption" color="text.secondary">
+            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
               {row.phone}
             </Typography>
           </Box>

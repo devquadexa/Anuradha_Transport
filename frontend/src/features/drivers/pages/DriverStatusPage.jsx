@@ -162,9 +162,9 @@ export default function DriverStatusPage() {
 
       {/* Driver cards */}
       {loading ? (
-        <Typography color="text.secondary" sx={{ py: 4, textAlign: 'center' }}>Loading driver status…</Typography>
+        <Typography sx={{ color: 'text.secondary', py: 4, textAlign: 'center' }}>Loading driver status…</Typography>
       ) : visibleRows.length === 0 ? (
-        <Typography color="text.secondary" sx={{ py: 4, textAlign: 'center' }}>No drivers in this status.</Typography>
+        <Typography sx={{ color: 'text.secondary', py: 4, textAlign: 'center' }}>No drivers in this status.</Typography>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {visibleRows.map(({ driver, live, activeTrip, status }) => (

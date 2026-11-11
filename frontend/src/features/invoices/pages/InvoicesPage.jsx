@@ -73,16 +73,16 @@ export default function InvoicesPage() {
 
   return (
     <Box>
-      <Stack direction="row" alignItems="center" spacing={1.5} sx={{ mb: 3 }}>
+      <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center', mb: 3 }}>
         <ReceiptIcon color="primary" />
-        <Typography variant="h5" fontWeight={700}>
+        <Typography variant="h5" sx={{ fontWeight: 700 }}>
           Invoices
         </Typography>
       </Stack>
 
       {/* Filters */}
       <Paper sx={{ p: 2, mb: 3 }}>
-        <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} alignItems="center">
+        <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ alignItems: { xs: 'stretch', md: 'center' } }}>
           <TextField
             size="small"
             placeholder="Search by trip number..."
@@ -95,7 +95,7 @@ export default function InvoicesPage() {
                 </InputAdornment>
               ),
             }}
-            sx={{ minWidth: 250 }}
+            sx={{ minWidth: { md: 250 } }}
           />
           <TextField
             size="small"
@@ -104,7 +104,7 @@ export default function InvoicesPage() {
             value={dateFrom}
             onChange={handleDateFromChange}
             InputLabelProps={{ shrink: true }}
-            sx={{ minWidth: 160 }}
+            sx={{ minWidth: { md: 160 } }}
           />
           <TextField
             size="small"
@@ -113,7 +113,7 @@ export default function InvoicesPage() {
             value={dateTo}
             onChange={handleDateToChange}
             InputLabelProps={{ shrink: true }}
-            sx={{ minWidth: 160 }}
+            sx={{ minWidth: { md: 160 } }}
           />
         </Stack>
       </Paper>
@@ -133,7 +133,7 @@ export default function InvoicesPage() {
 
       {!isLoading && !isError && trips.length === 0 && (
         <Paper sx={{ p: 4, textAlign: 'center' }}>
-          <Typography color="text.secondary">No completed and approved trips found.</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>No completed and approved trips found.</Typography>
         </Paper>
       )}
 
@@ -215,17 +215,16 @@ function TripInvoiceCard({ trip, expanded, onToggle }) {
       {/* Summary row */}
       <Stack
         direction="row"
-        alignItems="center"
         spacing={2}
-        sx={{ px: 2.5, py: 1.5, cursor: 'pointer' }}
+        sx={{ alignItems: 'center', px: 2.5, py: 1.5, cursor: 'pointer' }}
         onClick={onToggle}
       >
         <IconButton size="small">
           {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </IconButton>
         <Box sx={{ flexGrow: 1 }}>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} alignItems={{ sm: 'center' }}>
-            <Typography variant="subtitle2" fontWeight={700}>
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ alignItems: { sm: 'center' } }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
               {trip.tripNumber}
             </Typography>
             <Chip
@@ -233,11 +232,11 @@ function TripInvoiceCard({ trip, expanded, onToggle }) {
               size="small"
               variant="outlined"
             />
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               {trip.origin} → {trip.destination}
             </Typography>
           </Stack>
-          <Typography variant="caption" color="text.secondary">
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
             {trip.scheduledDate ? new Date(trip.scheduledDate).toLocaleDateString() : ''}
             {' • '}Driver: {driverName}
             {' • '}Total: {totalMileage.toFixed(1)} km
@@ -263,11 +262,11 @@ function TripInvoiceCard({ trip, expanded, onToggle }) {
         <Divider />
         <Box ref={invoiceRef} sx={{ p: 3 }}>
           <Box className="invoice-header" sx={{ borderBottom: '2px solid', borderColor: 'primary.main', pb: 2, mb: 2 }}>
-            <Stack direction="row" justifyContent="space-between" alignItems="center">
-              <Typography className="invoice-title" variant="h5" fontWeight={700} color="primary">
+            <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+              <Typography className="invoice-title" variant="h5" color="primary" sx={{ fontWeight: 700 }}>
                 INVOICE
               </Typography>
-              <Typography className="trip-number" variant="body2" color="text.secondary" fontWeight={600}>
+              <Typography className="trip-number" variant="body2" sx={{ color: 'text.secondary', fontWeight: 600 }}>
                 {trip.tripNumber}
               </Typography>
             </Stack>

@@ -67,6 +67,26 @@ export function buildTheme(mode) {
       ...Array(21).fill('0px 12px 28px rgba(37,99,235,0.12)'),
     ],
     components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          html: { WebkitTextSizeAdjust: '100%', WebkitTapHighlightColor: 'transparent' },
+          body: { overflowX: 'hidden' },
+          '@media (max-width:600px)': {
+            // 16px inputs stop iOS Safari from zooming the page on focus
+            'input, select, textarea': { fontSize: '16px !important' },
+          },
+        },
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: { '@media (pointer: coarse)': { minWidth: 40, minHeight: 40 } },
+        },
+      },
+      MuiTablePagination: {
+        styleOverrides: {
+          root: { '@media (max-width:600px)': { '.MuiTablePagination-spacer': { display: 'none' } } },
+        },
+      },
       MuiButton: {
         defaultProps: { disableElevation: true },
         styleOverrides: {
@@ -180,6 +200,7 @@ export function buildTheme(mode) {
             fontWeight: 700,
             fontSize: '1.25rem',
             paddingBottom: 8,
+            '@media (max-width:600px)': { fontSize: '1.1rem', padding: '16px 16px 8px' },
           },
         },
       },
@@ -187,6 +208,7 @@ export function buildTheme(mode) {
         styleOverrides: {
           root: {
             paddingTop: '12px !important',
+            '@media (max-width:600px)': { paddingLeft: 16, paddingRight: 16 },
           },
         },
       },
@@ -194,6 +216,13 @@ export function buildTheme(mode) {
         styleOverrides: {
           root: {
             padding: '16px 24px',
+            '@media (max-width:600px)': {
+              padding: '12px 16px calc(12px + env(safe-area-inset-bottom))',
+              flexWrap: 'wrap',
+              gap: 8,
+              '& > :not(style) ~ :not(style)': { marginLeft: 0 },
+              '& .MuiButton-root': { flex: '1 1 auto' },
+            },
           },
         },
       },

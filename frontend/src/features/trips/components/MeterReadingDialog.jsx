@@ -36,7 +36,7 @@ export default function MeterReadingDialog({ open, locationName, submitting = fa
       />
       <DialogContent sx={{ px: 3, py: 3 }}>
         <Stack spacing={1.5}>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             Enter the vehicle's current meter reading (km) to continue and view the route.
           </Typography>
           <TextField

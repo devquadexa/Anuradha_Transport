@@ -63,15 +63,15 @@ export default function CustomersListPage() {
 
         return (
           <Box>
-            <Stack direction="row" spacing={1.5} alignItems="center">
+            <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
               <Avatar variant="rounded" sx={{ width: 34, height: 34, bgcolor: 'primary.main', fontSize: 14 }}>
                 <BusinessIcon fontSize="small" />
               </Avatar>
               <Box sx={{ flex: 1 }}>
-                <Typography variant="body2" fontWeight={600}>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
                   {row.companyName}
                 </Typography>
-                <Typography variant="caption" color="text.secondary">
+                <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                   {row.contactPerson || '—'}
                 </Typography>
               </Box>
@@ -80,7 +80,7 @@ export default function CustomersListPage() {
                   size="small"
                   onClick={(e) => { e.stopPropagation(); setExpandedCustomer(isExpanded ? null : row.id); }}
                 >
-                  <Stack direction="row" spacing={0.5} alignItems="center">
+                  <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
                     <Chip size="small" icon={<LocationOnIcon />} label={customerLocations.length} sx={{ height: 22, fontSize: 11 }} />
                     {isExpanded ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
                   </Stack>
@@ -99,9 +99,9 @@ export default function CustomersListPage() {
             <Collapse in={isExpanded}>
               <Stack spacing={0.5} sx={{ mt: 1, ml: 6.5 }}>
                 {customerLocations.map((loc) => (
-                  <Stack key={loc.id} direction="row" spacing={0.5} alignItems="center">
+                  <Stack key={loc.id} direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
                     <LocationOnIcon sx={{ fontSize: 14, color: 'primary.main' }} />
-                    <Typography variant="caption" fontWeight={500} sx={{ flex: 1 }}>{loc.name}</Typography>
+                    <Typography variant="caption" sx={{ fontWeight: 500, flex: 1 }}>{loc.name}</Typography>
                     {hasPermission('customers:update') && (
                       <IconButton size="small" onClick={(e) => { e.stopPropagation(); setEditingLocation(loc); setLocationCustomerId(row.id); setLocationCustomer(row); setLocationFormOpen(true); }}>
                         <EditIcon sx={{ fontSize: 14 }} />
@@ -143,7 +143,7 @@ export default function CustomersListPage() {
         if (!fullAddress) return '—';
         const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
         return (
-          <Stack direction="row" spacing={0.75} alignItems="center" sx={{ maxWidth: 260 }}>
+          <Stack direction="row" spacing={0.75} sx={{ alignItems: 'center', maxWidth: 260 }}>
             <Typography variant="body2" noWrap title={fullAddress} sx={{ flex: 1, minWidth: 0 }}>
               {fullAddress}
             </Typography>

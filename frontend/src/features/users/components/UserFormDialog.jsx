@@ -121,7 +121,7 @@ export default function UserFormDialog({ open, user = null, submitting = false, 
 
       <DialogContent sx={{ px: 3, py: 3 }}>
         {/* Section: Personal Info */}
-        <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 2, textTransform: 'uppercase', fontSize: '0.7rem', letterSpacing: 1 }}>
+        <Typography variant="subtitle2" sx={{ color: 'text.secondary', mb: 2, textTransform: 'uppercase', fontSize: '0.7rem', letterSpacing: 1 }}>
           Personal Information
         </Typography>
         <Grid container spacing={2.5}>
@@ -141,7 +141,7 @@ export default function UserFormDialog({ open, user = null, submitting = false, 
 
         {/* Section: Account */}
         <Divider sx={{ my: 3 }} />
-        <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 2, textTransform: 'uppercase', fontSize: '0.7rem', letterSpacing: 1 }}>
+        <Typography variant="subtitle2" sx={{ color: 'text.secondary', mb: 2, textTransform: 'uppercase', fontSize: '0.7rem', letterSpacing: 1 }}>
           Account Settings
         </Typography>
         <Grid container spacing={2.5}>
@@ -201,7 +201,7 @@ export default function UserFormDialog({ open, user = null, submitting = false, 
         {isDriverRole && (
           <>
             <Divider sx={{ my: 3 }} />
-            <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 2, textTransform: 'uppercase', fontSize: '0.7rem', letterSpacing: 1 }}>
+            <Typography variant="subtitle2" sx={{ color: 'text.secondary', mb: 2, textTransform: 'uppercase', fontSize: '0.7rem', letterSpacing: 1 }}>
               Driver Details
             </Typography>
             <Grid container spacing={2.5}>
